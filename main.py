@@ -2,11 +2,13 @@
 #
 
 def print_menu():
+
     print("[1] Novo\n" + "[2] Listar Produtos\n" + "[3] Consultar Produto\n" + "[4] Entrada Estoque\n" +
           "[5] Saída Estoque\n" + "[6] Checar Quantidades\n" + "[7] Excluir Produto\n" + "[0] Sair\n")
 
 
 def opcao1():
+
     nome = input("Informe o nome do produto: ")
     preco = input("Informe o preço: ")
     ano = input("Informe o ano: ")
@@ -18,10 +20,11 @@ def opcao1():
 
     ListaProdutos.append(produto)
 
-    print(f"{nome} foi adicioado.\n")
+    print(f"\n{nome} foi adicioado.\n")
 
 
 def opcao2():
+
     for i, produto in enumerate(ListaProdutos):
         print(f"Nome: {ListaProdutos[i][0]}")
         print(f"Preço: {ListaProdutos[i][1]}")
@@ -32,6 +35,7 @@ def opcao2():
 
 
 def opcao3():
+
     nomeConsulta = input("Consulta de produtos\nInforme o nome do produto:\n")
 
     for i, produto in enumerate(ListaProdutos):
@@ -44,7 +48,67 @@ def opcao3():
             print(f"Quantidade máxima: {ListaProdutos[i][5]}\n")
             break
         else:
-            print(f"{nomeConsulta} não encontrado\n")
+            print("Produrando...")
+        print(f"{nomeConsulta} não encontrado\n")
+
+
+def opcao4():
+
+    nomeConsulta = input("Entrada de produtos\nInforme o nome do produto:\n")
+
+    for i, produto in enumerate(ListaProdutos):
+        if nomeConsulta == ListaProdutos[i][0]:
+            print(f"{ListaProdutos[i][0]} encontrado!\n")
+            qtdeEntrada = int(input("Informe a quantidade a dar entrada em estoque:\n"))
+            ListaProdutos[i][3] += qtdeEntrada
+            break
+        else:
+            print("Produrando...")
+
+    print("Pesquisa finalizada.\n")
+
+
+def opcao5():
+
+    nomeConsulta = input("Saída de produtos\nInforme o nome do produto:\n")
+
+    for i, produto in enumerate(ListaProdutos):
+        if nomeConsulta == ListaProdutos[i][0]:
+            print(f"{ListaProdutos[i][0]} encontrado!\n")
+            qtdeSaida = int(input("Informe a quantidade a dar saída em estoque:\n"))
+            ListaProdutos[i][3] -= qtdeSaida
+            break
+        else:
+            print("Produrando...")
+
+    print("Pesquisa finalizada.\n")
+
+def opcao6():
+
+    for i, produto in enumerate(ListaProdutos):
+
+        QtdeAtual = int(ListaProdutos[i][3])
+
+        QtdeMinProduto = int(ListaProdutos[i][4])
+
+        QtdeMaxProduto = int(ListaProdutos[i][5])
+
+        Saldo = QtdeAtual - QtdeMinProduto
+
+        if QtdeAtual < QtdeMinProduto:
+            print(f"Produto {ListaProdutos[i][0]} está abaixo do mínimo. "
+                  f"A quantidade necessária é de {Saldo * -1}.\n")
+        else:
+            print("Quantidades dentro do definido")
+
+
+def opcao7():
+
+    nomeConsulta = input("Exclusão de produto\nInforme o nome do produto:\n")
+    
+    for i, produto in enumerate(ListaProdutos):
+        if nomeConsulta == ListaProdutos[i][0]:
+            print(f"{ListaProdutos[i][0]} encontrado!\n")
 
 
 def opcao0():
@@ -66,6 +130,18 @@ if __name__ == '__main__':
 
         elif opcao_user == 3:
             opcao3()
+
+        elif opcao_user == 4:
+            opcao4()
+
+        elif opcao_user == 5:
+            opcao5()
+
+        elif opcao_user == 6:
+            opcao6()
+
+        elif opcao_user == 7:
+            opcao7()
 
         elif opcao_user == 0:
             opcao0()
