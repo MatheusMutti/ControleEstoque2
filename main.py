@@ -105,10 +105,12 @@ def opcao6():
 def opcao7():
 
     nomeConsulta = input("Exclusão de produto\nInforme o nome do produto:\n")
-    
+
     for i, produto in enumerate(ListaProdutos):
         if nomeConsulta == ListaProdutos[i][0]:
             print(f"{ListaProdutos[i][0]} encontrado!\n")
+            ListaProdutos.remove(ListaProdutos[i])
+            print(f"{ListaProdutos[i][0]} excluído com sucesso!\n")
 
 
 def opcao0():
